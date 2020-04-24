@@ -1,4 +1,13 @@
 defmodule Kinext.Video do
+  @moduledoc """
+  Interface for, and struct representing, a video "context" for a kinext device.
+
+  To access the video with kinext, you must first create a new video context via the `new/2` function.
+  To retrieve each frame of the video, you then request a frame via the `get_frame/1` function.
+
+  The underlying OpenKinect video paradigm is complex (raw RGB, pointers, and callbacks), and this
+  abstraction eliminates that complexity.
+  """
   defstruct [:context, :device, :listener_pid]
 
   alias Kinext.Context
@@ -34,8 +43,6 @@ defmodule Kinext.Video do
 
   def get_frame(%Video{context: %Context{ref: ref}, listener_pid: listener_pid} = video) do
     Kinext.Native.freenect_process_events(ref)
-
-    # :timer.sleep(50)
 
     case Listener.get_last_frame(listener_pid) do
       {:error, :no_frame} ->

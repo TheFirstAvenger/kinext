@@ -1,4 +1,11 @@
 defmodule Kinext.Device do
+  @moduledoc """
+  Interface for, and struct representing, an OpenKinect device.
+
+  OpenKinect devices represent a single kinext device, and are used to access and modify features on the device such as
+  video, LED, and the tilt motor.
+  """
+
   defstruct [:ref]
 
   @type t :: %__MODULE__{
@@ -22,9 +29,9 @@ defmodule Kinext.Device do
 
   @led_colors Map.keys(@led_map)
 
-  def set_led(%Device{ref: ref}, color) when color in @led_colors do
-    IO.inspect(@led_colors)
+  def led_colors, do: @led_colors
 
+  def set_led(%Device{ref: ref}, color) when color in @led_colors do
     case Native.freenect_set_led(ref, Map.get(@led_map, color)) do
       0 -> :ok
       error -> {:error, error}

@@ -1,4 +1,9 @@
 defmodule Kinext.Context do
+  @moduledoc """
+  Interface for, and structure representing, an OpenKinect context.
+
+  OpenKinect contexts are the top level entity in OpenKinect, from which you can access the list of devices.
+  """
   defstruct [:ref]
 
   @type t :: %__MODULE__{

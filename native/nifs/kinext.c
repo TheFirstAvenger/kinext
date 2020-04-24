@@ -47,7 +47,7 @@ static ErlNifPid video_callback_pid;
 
 static void ctx_res_destructor(ErlNifEnv *env, void *res)
 {
-  // freenect_shutdown(*((freenect_context **)res));
+  freenect_shutdown(*((freenect_context **)res));
 }
 
 static void dev_res_destructor(ErlNifEnv *env, void *res)

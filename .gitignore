@@ -27,3 +27,4 @@ kinext.plt
 kinext.plt.hash
 
 native/kinext.so
+.DS_Store

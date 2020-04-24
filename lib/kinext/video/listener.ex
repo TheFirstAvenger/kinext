@@ -1,4 +1,6 @@
 defmodule Kinext.Video.Listener do
+  @moduledoc false
+
   use GenServer
 
   require Logger

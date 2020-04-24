@@ -1,4 +1,8 @@
 defmodule Kinext.Runner do
+  @moduledoc """
+  Example usage of the video and LED functionality in Kinext. Can be run via
+  `mix kinext.go_picture` and `mix kinext.go_led`
+  """
   def go_picture do
     {:ok, context} = Kinext.Context.init()
     {:ok, device} = Kinext.Context.open_device(context, 1)

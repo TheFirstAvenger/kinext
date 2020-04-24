@@ -1,8 +1,17 @@
 defmodule Kinext.Native do
+  @moduledoc """
+  Provides access to C NIFs.
+
+  This module is used by the higher level modules such as `Kinext.Context`, `Kinext.Device`, and `Kinext.Video`.
+  """
   @on_load :load_nifs
 
   def load_nifs do
-    path = String.to_charlist("native/kinext")
+    path =
+      __DIR__
+      |> Path.join("../../native/kinext")
+      |> String.to_charlist()
+
     :erlang.load_nif(path, 0)
   end
 
